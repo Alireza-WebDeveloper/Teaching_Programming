@@ -3,17 +3,14 @@ import { FC } from 'react';
 import { Formik, FormikValues, Form as Formik_Form } from 'formik';
 import FormikControl from '../../FormikControl';
 import * as Yup from 'yup';
+import { SignInState } from '@/app/Models/Auth';
 import Link from 'next/link';
+import useSignIn from '@/app/Hooks/Auth/useSignIn';
 // Types
-
-type initialValuesType = {
-  email: string;
-  password: string;
-};
 
 type SignInProps = {};
 // InitialValues
-const initialValues: initialValuesType = {
+const initialValues: SignInState = {
   email: '',
   password: '',
 };
@@ -34,9 +31,11 @@ const validationSchema = Yup.object().shape({
 });
 
 const SignIn: FC<SignInProps> = () => {
+  // States
+  const { mutate } = useSignIn();
   // Submit Form
-  const handleFilterProucts = async (values: FormikValues) => {
-    console.log(values);
+  const handleFilterProucts = async (values: SignInState) => {
+    mutate(values);
   };
   // Return JSX
   return (
