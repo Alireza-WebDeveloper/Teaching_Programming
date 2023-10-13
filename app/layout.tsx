@@ -26,7 +26,7 @@ export default function RootLayout({
       >
         <ThemeWrapper>
           <Header />
-          <main className="mt-20">{children}</main>
+          <main className="mt-5">{children}</main>
         </ThemeWrapper>
       </body>
     </html>
