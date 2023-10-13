@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Roboto_Slab } from 'next/font/google';
 import Header from './Components/Header';
 import ThemeWrapper from './Theme';
+import ReactQueryPvorider from './StateManagement/Provider';
 const robotoSlab = Roboto_Slab({
   subsets: ['latin'],
   weight: ['400', '700'],
@@ -24,10 +25,12 @@ export default function RootLayout({
         className={`${robotoSlab.className}  bg-gray-100 text-black  
         dark:bg-black dark:text-white capitalize`}
       >
-        <ThemeWrapper>
-          <Header />
-          <main className="mt-5">{children}</main>
-        </ThemeWrapper>
+        <ReactQueryPvorider>
+          <ThemeWrapper>
+            <Header />
+            <main className="mt-5">{children}</main>
+          </ThemeWrapper>
+        </ReactQueryPvorider>
       </body>
     </html>
   );
