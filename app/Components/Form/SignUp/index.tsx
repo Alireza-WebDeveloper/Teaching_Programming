@@ -25,10 +25,24 @@ const initialValues: initialValuesType = {
 
 // Validation
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Please enter your name'),
-  email: Yup.string().required('Please enter your email'),
-  password: Yup.string().required('Please enter your password'),
-  passwordConfirm: Yup.string().required('Please repeat your password'),
+  name: Yup.string()
+    .min(4, 'Name must be at least 4 characters.')
+    .max(15, 'Name must be at least 15 characters.')
+    .required('Name is Required.'),
+  email: Yup.string()
+    .email('Email must be a valid email address.')
+    .required('Email is required.'),
+  password: Yup.string()
+    .min(8, 'Password must be at least 8 characters.')
+    .max(15, 'Password cannot be more than 15 characters.')
+    .matches(
+      /^(?=(.*[A-Za-z]){3,})(?=(.*\d){3,})[A-Za-z\d]+$/,
+      'Password must have at least 3 English letters and 3 digits.'
+    )
+    .required('Password is required.'),
+  passwordConfirm: Yup.string()
+    .oneOf([Yup.ref('password')], 'Passwords must match.')
+    .required('Repeat Password is required.'),
 });
 
 const SignUp: FC<SignUpProps> = () => {
@@ -62,7 +76,7 @@ const SignUp: FC<SignUpProps> = () => {
               <FormikControl
                 control="input"
                 name="password"
-                type="text"
+                type="password"
                 label="password"
               />
               <FormikControl
