@@ -4,6 +4,8 @@ import { Formik, FormikValues, Form as Formik_Form } from 'formik';
 import FormikControl from '../../FormikControl';
 import * as Yup from 'yup';
 import Link from 'next/link';
+import useSignUp from '@/app/Hooks/Auth/useSignUp';
+import { SignUpState } from '@/app/Models/Auth';
 
 // Types
 
@@ -46,9 +48,11 @@ const validationSchema = Yup.object().shape({
 });
 
 const SignUp: FC<SignUpProps> = () => {
+  // States
+  const { mutate } = useSignUp();
   // Submit Form
-  const handleFilterProucts = async (values: FormikValues) => {
-    console.log(values);
+  const handleFilterProucts = async (values: SignUpState) => {
+    mutate(values);
   };
   // Return JSX
   return (
