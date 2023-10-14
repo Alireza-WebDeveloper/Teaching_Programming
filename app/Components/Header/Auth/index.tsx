@@ -1,17 +1,21 @@
 'use client';
+import useGetUser from '@/app/Hooks/Auth/useGetUser';
 import { Menu, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import * as Icons from 'react-icons/md';
 
 export default function Example() {
+  const { data: user, isLoading, isError } = useGetUser();
+  if (isLoading || isError) return <></>;
+
   return (
     <div>
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full items-center justify-center rounded-md bg-black text-white dark:text-black dark:bg-gray-200  px-4 py-2 text-sm font-medium   hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <Icons.MdArrowDropDown className="mr-1" />
-            <span>Fateme Mohammadi</span>
+            <span>{user?.name}</span>
             <Icons.MdPerson
               className="ml-2 -mr-1 h-5 w-5 text-white dark:text-black hover:text-violet-100 "
               aria-hidden="true"

@@ -22,4 +22,13 @@ const asyncSignIn = async (data: SignInState) => {
   }
 };
 
-export { asyncSignIn, asyncSignUp };
+const asyncGetUserVerificationToken = async () => {
+  try {
+    const user = await BaseApi.get<SignResponse>('/auth/tokenVerification');
+    return user.data.data.user;
+  } catch (err: any) {
+    throw new Error(err.response.data.message);
+  }
+};
+
+export { asyncSignIn, asyncSignUp, asyncGetUserVerificationToken };
