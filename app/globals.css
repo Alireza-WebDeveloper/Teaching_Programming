@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.fadeComponent {
+  animation: fade 1s linear alternate forwards;
+  -webkit-animation: fade 1s linear alternate forwards;
+}
+
+@keyframes fade {
+  0%,
+  60% {
+    filter: blur(1rem);
+    -webkit-filter: blur(1rem);
+  }
+  80% {
+    filter: blur(0.8rem);
+    -webkit-filter: blur(0.8rem);
+  }
+
+  100% {
+    filter: blur(0);
+    -webkit-filter: blur(0);
+  }
+}
