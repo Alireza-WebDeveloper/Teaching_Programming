@@ -6,9 +6,8 @@ import { Fragment } from 'react';
 import * as Icons from 'react-icons/md';
 
 export default function Example() {
-  const { data: user, isLoading, isError } = useGetUser();
+  const { data: user, isError, isLoading } = useGetUser();
   if (isLoading || isError) return <></>;
-
   return (
     <div>
       <Menu as="div" className="relative inline-block text-left">
