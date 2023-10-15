@@ -10,7 +10,7 @@ const queryClientOptions = {
   defaultOptions: {
     // 5 * 1000
     queries: {
-      staleTime: 60000,
+      staleTime: 3000000,
     },
   },
 };

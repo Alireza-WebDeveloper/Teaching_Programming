@@ -3,11 +3,17 @@ import { useQuery } from '@tanstack/react-query';
 
 const useGetUser = () => {
   const queryKey = ['user'];
-  const { data, isLoading, isError } = useQuery(
+  const { data, isLoading, isError, status } = useQuery(
     queryKey,
-    asyncGetUserVerificationToken
+    asyncGetUserVerificationToken,
+    {
+      retry: 0,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
   );
-  return { data, isLoading, isError };
+  return { data, isLoading, isError, status };
 };
 
 export default useGetUser;
