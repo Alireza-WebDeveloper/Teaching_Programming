@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import useGetUser from '@/app/Hooks/Auth/useGetUser';
 import { useQueryClient } from '@tanstack/react-query';
+import GlobalLinks from './Global';
+import PrivateLinks from './Private';
 const Navigation = () => {
   // States Check Auth
   const { data: user, isLoading, isError } = useGetUser();
@@ -16,30 +18,12 @@ const Navigation = () => {
     <section className="flex flex-wrap relative">
       {shouldShowButtons ? (
         <>
-          <Link href="/about">
-            <button className="px-5 py-2.5 rounded relative capitalize hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">
-              <span>about</span>
-            </button>
-          </Link>
-          <Link href="/signup">
-            <button className="px-5 py-2.5 rounded relative flex gap-2 items-center capitalize hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">
-              <span>sign up</span>
-            </button>
-          </Link>
-          <Link href="/signin">
-            <button className="px-5 py-2.5 rounded relative capitalize hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">
-              <span>sign in</span>
-            </button>
-          </Link>
+          <GlobalLinks />
+          <PrivateLinks />
         </>
       ) : (
         <>
-          {' '}
-          <Link href="/about">
-            <button className="px-5 py-2.5 rounded relative capitalize hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">
-              <span>about</span>
-            </button>
-          </Link>
+          <GlobalLinks />
         </>
       )}
     </section>
