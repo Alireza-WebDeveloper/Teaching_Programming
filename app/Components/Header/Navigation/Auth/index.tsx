@@ -14,9 +14,9 @@ export default function Auth() {
         <div>
           <Menu.Button className="inline-flex w-full items-center justify-center rounded-md bg-black text-white dark:text-black dark:bg-gray-200  px-4 py-2 text-sm font-medium   hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <Icons.MdArrowDropDown className="mr-1" />
-            <span>{user?.name}</span>
+            <span className="text-sm capitalize">{user?.name}</span>
             <Icons.MdPerson
-              className="ml-2 -mr-1 h-5 w-5 text-white dark:text-black hover:text-violet-100 "
+              className="ml-2 -mr-1 h-7 w-5 text-white dark:text-black hover:text-violet-100 "
               aria-hidden="true"
             />
           </Menu.Button>
@@ -38,7 +38,7 @@ export default function Auth() {
                     <button
                       className={`${
                         active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                      } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                      } group flex w-full items-center rounded-md px-2 py-2 text-sm capitalize`}
                     >
                       {active ? (
                         <Icons.MdDashboard

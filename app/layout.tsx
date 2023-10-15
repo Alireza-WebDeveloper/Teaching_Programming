@@ -28,7 +28,7 @@ export default function RootLayout({
         <ReactQueryPvorider>
           <ThemeWrapper>
             <Header />
-            <main className="mt-5">{children}</main>
+            <main className=" mt-20">{children}</main>
           </ThemeWrapper>
         </ReactQueryPvorider>
       </body>

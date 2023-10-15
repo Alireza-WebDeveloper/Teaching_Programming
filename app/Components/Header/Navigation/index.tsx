@@ -16,7 +16,7 @@ const Navigation = () => {
   }
   // Render
   return (
-    <section className="flex flex-wrap relative">
+    <section className="flex flex-wrap relative gap-7 items-center">
       {!user && !isLoading ? (
         <>
           <GlobalLinks />

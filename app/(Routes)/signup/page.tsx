@@ -11,8 +11,8 @@ const Page = () => {
       ) : !user ? (
         <>
           <section className="relative">
-            <h1 className="text-4xl">sign up</h1>
-            <span className="absolute -bottom-2 w-[50%] h-1 bg-purple-800 dark:bg-purple-300 rounded"></span>
+            <h1 className="text-4xl font-semibold">sign up</h1>
+            <span className="absolute -bottom-2.5 w-[50%] h-1 bg-purple-800 dark:bg-purple-300 rounded"></span>
           </section>
           <p className="text-center text-lg">
             please sign up to your account to countine with app

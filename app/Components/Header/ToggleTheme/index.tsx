@@ -19,7 +19,11 @@ const ToggleTheme = () => {
         currentTheme == 'dark' ? setTheme('light') : setTheme('dark')
       }
     >
-      {currentTheme === 'light' ? <Icons.MdLightMode /> : <Icons.MdDarkMode />}
+      {currentTheme === 'light' ? (
+        <Icons.MdLightMode size="2rem" />
+      ) : (
+        <Icons.MdDarkMode size="2rem" />
+      )}
     </section>
   );
 };
