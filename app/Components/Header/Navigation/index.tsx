@@ -5,6 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import GlobalLinks from './Global';
 import SignLinks from './Sign';
 import Logout from './Logout';
+import Auth from './Auth';
 const Navigation = () => {
   // States Check Auth
   const { data: user, isLoading, isError } = useGetUser();
@@ -29,6 +30,7 @@ const Navigation = () => {
         <>
           <GlobalLinks />
           <Logout />
+          <Auth />
         </>
       )}
     </section>

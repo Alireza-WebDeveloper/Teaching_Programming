@@ -1,4 +1,3 @@
-import Auth from './Auth';
 import Logo from './Logo';
 import Navigation from './Navigation';
 import ToggleTheme from './ToggleTheme';
@@ -13,7 +12,6 @@ const Header = () => {
         </section>
         <section className="flex space-x-10 items-center">
           <Navigation />
-          <Auth />
         </section>
       </div>
     </header>

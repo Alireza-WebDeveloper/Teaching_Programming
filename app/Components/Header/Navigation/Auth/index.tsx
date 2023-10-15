@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import * as Icons from 'react-icons/md';
 
-export default function Example() {
+export default function Auth() {
   const { data: user, isError, isLoading } = useGetUser();
   if (isLoading || isError) return <></>;
   return (
