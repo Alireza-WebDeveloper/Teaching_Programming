@@ -8,9 +8,10 @@ const useGetUser = () => {
     asyncGetUserVerificationToken,
     {
       retry: 0,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
+      staleTime: 5000,
+      // refetchOnMount: false,
+      // refetchOnReconnect: false,
+      // refetchOnWindowFocus: false,
     }
   );
   return { data, isLoading, isError, status };
