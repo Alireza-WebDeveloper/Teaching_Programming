@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const PrivateLinks = () => {
+const SignLinks = () => {
   return (
     <>
       <Link href="/signup">
@@ -16,4 +16,4 @@ const PrivateLinks = () => {
     </>
   );
 };
-export default PrivateLinks;
+export default SignLinks;

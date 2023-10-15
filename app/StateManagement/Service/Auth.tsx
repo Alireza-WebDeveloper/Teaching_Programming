@@ -31,4 +31,13 @@ const asyncGetUserVerificationToken = async () => {
   }
 };
 
-export { asyncSignIn, asyncSignUp, asyncGetUserVerificationToken };
+const asyncLogout = async () => {
+  try {
+    const data = await BaseApi.post('/auth/logout');
+    return data;
+  } catch (err: any) {
+    throw new Error(err.response.data.message);
+  }
+};
+
+export { asyncSignIn, asyncSignUp, asyncGetUserVerificationToken, asyncLogout };
