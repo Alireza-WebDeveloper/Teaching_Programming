@@ -7,11 +7,11 @@ const useGetUser = () => {
     queryKey,
     asyncGetUserVerificationToken,
     {
-      retry: 0,
-      staleTime: 5000,
-      // refetchOnMount: false,
-      // refetchOnReconnect: false,
-      // refetchOnWindowFocus: false,
+      retry: false,
+      staleTime: 1000,
+      refetchOnMount: true,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
     }
   );
   return { data, isLoading, isError, status };
