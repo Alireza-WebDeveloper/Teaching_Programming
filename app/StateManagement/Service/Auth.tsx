@@ -45,7 +45,16 @@ const asyncRefreshToken = async () => {
     const data = await BaseApi.get('/auth/tokenRefresh');
     return data;
   } catch (err: any) {
-    throw new Error(err.message);
+    throw new Error(err.response.data.message);
+  }
+};
+
+const asyncForgotPasword = async (data: { email: string }) => {
+  try {
+    const response = await BaseApi.post('/auth/forgotPassword', data);
+    return response;
+  } catch (err: any) {
+    throw new Error(err.response.data.message);
   }
 };
 
@@ -55,4 +64,5 @@ export {
   asyncGetUserVerificationToken,
   asyncLogout,
   asyncRefreshToken,
+  asyncForgotPasword,
 };

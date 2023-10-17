@@ -65,14 +65,22 @@ const SignIn: FC<SignInProps> = () => {
                   type="submit"
                   className="bg-green-600 w-full py-2 rounded-lg capitalize px-4 text-2xl text-white"
                 >
-                  sign up
+                  sign in
                 </button>
-                <Link
-                  className="text-center text-sm text-blue-700 dark:text-blue-500 font-bold"
-                  href={'/signup'}
-                >
-                  {`don't have an account?`}
-                </Link>
+                <section className="flex justify-between">
+                  <Link
+                    className="text-center text-sm text-blue-700 dark:text-blue-500 font-bold"
+                    href={'/signup'}
+                  >
+                    {`don't have an account?`}
+                  </Link>
+                  <Link
+                    className="text-center text-sm text-blue-700 dark:text-blue-500 font-bold"
+                    href={'/auth/forgot-password'}
+                  >
+                    {`Forgot your password?`}
+                  </Link>
+                </section>
               </section>
             </div>
           </Formik_Form>
