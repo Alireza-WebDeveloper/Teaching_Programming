@@ -3,34 +3,39 @@ import useGetUser from '@/app/Hooks/Auth/useGetUser';
 import {
   asyncCheckCodeResetPassword,
   asyncCheckTokenResetPassword,
-  asyncResetPassword,
 } from '@/app/StateManagement/Service/Auth';
 import { redirect } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+import useResetPassword from '@/app/Hooks/Auth/useResetPassword';
 import CodePassword from '@/app/Components/Form/CodePassword';
 import ResetPassword from '@/app/Components/Form/ResetPassword';
 import { useRouter } from 'next/navigation';
 const Page = () => {
   const { data: user, isLoading } = useGetUser();
   const router = useRouter();
+  const { id } = useParams();
+  // Of Request 1
   const [checkTokenResetPassword, setCheckTokenResetPassword] = useState(false);
+  // Of Request 2
   const [checkCodeResetPassword, setCheckCodeResetPassword] = useState(false);
   const [code, SetCode] = useState<any>(null);
-  const { id } = useParams();
-  const handleResetPassword = async (values: any) => {
-    try {
-      const newData: any = {
-        password: values.password,
-        passwordConfirm: values.passwordConfirm,
-        id,
-        code,
-      };
-      await asyncResetPassword(newData);
-      router.push('/auth/signin');
-    } catch (err) {}
-  };
+  // Of Request 3
+  const { mutate } = useResetPassword();
+  // 1 ) Check Token On URl(Id)
+  useEffect(() => {
+    if (!isLoading && !user) {
+      asyncCheckTokenResetPassword(id)
+        .then((res) => {
+          setCheckTokenResetPassword(true);
+        })
+        .catch((err: any) => {
+          router.push('/');
+        });
+    }
+  }, [user, isLoading]);
 
+  // 2 ) Request Send Check Code Of Email
   const handleCheckCodeToken = async (values: { code: string }) => {
     const newData = { id, code: values.code };
     asyncCheckCodeResetPassword(newData)
@@ -42,19 +47,18 @@ const Page = () => {
         //
       });
   };
-  useEffect(() => {
-    if (isLoading) {
-      //
-    } else if (!user) {
-      asyncCheckTokenResetPassword(id)
-        .then((res) => {
-          setCheckTokenResetPassword(true);
-        })
-        .catch((err: any) => {
-          console.log(err);
-        });
-    }
-  }, [user]);
+
+  // 3 ) Send Request Reset Password
+  const handleResetPassword = async (values: any) => {
+    const newData: any = {
+      password: values.password,
+      passwordConfirm: values.passwordConfirm,
+      id,
+      code,
+    };
+    mutate(newData);
+  };
+
   return (
     <div className="grid place-items-center grid-cols-1 gap-10">
       {isLoading ? (

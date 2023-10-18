@@ -3,7 +3,6 @@ import { FC } from 'react';
 import { Formik, Form as Formik_Form } from 'formik';
 import FormikControl from '../../FormikControl';
 import * as Yup from 'yup';
-import Link from 'next/link';
 import useForgotPassword from '@/app/Hooks/Auth/useForgotPassword';
 // Types
 

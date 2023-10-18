@@ -3,8 +3,6 @@ import { FC } from 'react';
 import { Formik, Form as Formik_Form } from 'formik';
 import FormikControl from '../../FormikControl';
 import * as Yup from 'yup';
-import { asyncResetPassword } from '@/app/StateManagement/Service/Auth';
-
 // Types
 
 type ResetPasswordProps = {
@@ -53,13 +51,13 @@ const ResetPassword: FC<ResetPasswordProps> = ({ handleResetPassword }) => {
               <FormikControl
                 control="input"
                 name="password"
-                type="text"
+                type="password"
                 label="password"
               />
               <FormikControl
                 control="input"
                 name="passwordConfirm"
-                type="text"
+                type="password"
                 label="password confirm"
               />
               <section className="flex flex-col space-y-2">
