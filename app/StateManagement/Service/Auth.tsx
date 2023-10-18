@@ -58,6 +58,41 @@ const asyncForgotPasword = async (data: { email: string }) => {
   }
 };
 
+const asyncCheckTokenResetPassword = async (id: any) => {
+  try {
+    const response = await BaseApi.get(`/auth/checkTokenResetPassword/${id}`);
+    return response;
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
+const asyncCheckCodeResetPassword = async (data: any) => {
+  try {
+    const { id, code } = data;
+    const response = await BaseApi.post(`/auth/checkCodeResetPassword/${id}`, {
+      code,
+    });
+    return response;
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
+const asyncResetPassword = async (data: any) => {
+  try {
+    const { id, code, password, passwordConfirm } = data;
+    const response = await BaseApi.post(`auth/resetpassword/${id}`, {
+      code,
+      password,
+      passwordConfirm,
+    });
+    return response;
+  } catch (err) {
+    throw new Error();
+  }
+};
+
 export {
   asyncSignIn,
   asyncSignUp,
@@ -65,4 +100,7 @@ export {
   asyncLogout,
   asyncRefreshToken,
   asyncForgotPasword,
+  asyncCheckTokenResetPassword,
+  asyncCheckCodeResetPassword,
+  asyncResetPassword,
 };
