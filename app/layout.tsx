@@ -31,7 +31,7 @@ export default function RootLayout({
         <ReactQueryPvorider>
           <ThemeWrapper>
             <Header />
-            <main className=" mt-20">{children}</main>
+            <main className="mt-[4.52rem]">{children}</main>
             <ToastContainer
               draggablePercent={60}
               transition={Zoom}

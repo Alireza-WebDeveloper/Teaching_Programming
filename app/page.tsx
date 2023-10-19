@@ -1,3 +1,5 @@
+export const revalidate = false;
+export const dynamic = 'force-dynamic';
 const HomePage = () => {
   return (
     <div className="grid place-items-center min-h-[100vh]">
