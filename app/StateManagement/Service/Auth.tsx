@@ -63,7 +63,7 @@ const asyncCheckTokenResetPassword = async (id: any) => {
     const response = await BaseApi.get(`/auth/checkTokenResetPassword/${id}`);
     return response;
   } catch (err: any) {
-    throw new Error(err);
+    throw new Error(err.response.data.message);
   }
 };
 
@@ -75,7 +75,7 @@ const asyncCheckCodeResetPassword = async (data: any) => {
     });
     return response;
   } catch (err: any) {
-    throw new Error(err);
+    throw new Error(err.response.data.message);
   }
 };
 
@@ -88,8 +88,8 @@ const asyncResetPassword = async (data: any) => {
       passwordConfirm,
     });
     return response;
-  } catch (err) {
-    throw new Error();
+  } catch (err: any) {
+    throw new Error(err.response.data.message);
   }
 };
 

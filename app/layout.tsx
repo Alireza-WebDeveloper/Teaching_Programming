@@ -4,6 +4,9 @@ import { Roboto_Slab } from 'next/font/google';
 import Header from './Components/Header';
 import ThemeWrapper from './Theme';
 import ReactQueryPvorider from './StateManagement/Provider';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import { Zoom } from 'react-toastify';
 const robotoSlab = Roboto_Slab({
   subsets: ['latin'],
   weight: ['400', '700'],
@@ -29,6 +32,20 @@ export default function RootLayout({
           <ThemeWrapper>
             <Header />
             <main className=" mt-20">{children}</main>
+            <ToastContainer
+              draggablePercent={60}
+              transition={Zoom}
+              position="top-center"
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
           </ThemeWrapper>
         </ReactQueryPvorider>
       </body>

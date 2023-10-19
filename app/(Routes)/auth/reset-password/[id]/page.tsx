@@ -11,6 +11,8 @@ import useResetPassword from '@/app/Hooks/Auth/useResetPassword';
 import CodePassword from '@/app/Components/Form/CodePassword';
 import ResetPassword from '@/app/Components/Form/ResetPassword';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import { error } from 'console';
 const Page = () => {
   const { data: user, isLoading } = useGetUser();
   const router = useRouter();
@@ -30,6 +32,7 @@ const Page = () => {
           setCheckTokenResetPassword(true);
         })
         .catch((err: any) => {
+          toast.error(`${err.message}`);
           router.push('/');
         });
     }
@@ -39,12 +42,14 @@ const Page = () => {
   const handleCheckCodeToken = async (values: { code: string }) => {
     const newData = { id, code: values.code };
     asyncCheckCodeResetPassword(newData)
-      .then((response) => {
+      .then((res: any) => {
         setCheckCodeResetPassword(true);
         SetCode(values.code);
+
+        toast.success(res.data.message);
       })
-      .catch((err) => {
-        //
+      .catch((err: any) => {
+        toast.error(`${err.message}`);
       });
   };
 
