@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { Formik, Form as Formik_Form } from 'formik';
 import FormikControl from '../../FormikControl';
 import * as Yup from 'yup';
-
+import React from 'react';
 // Types
 
 type CodePasswordProps = {
@@ -20,10 +20,6 @@ const validationSchema = Yup.object().shape({
 });
 
 const CodePassword: FC<CodePasswordProps> = ({ handleCheckCodeToken }) => {
-  // States
-
-  // Submit Form
-  // Return JSX
   return (
     <Formik
       initialValues={initialValues}
@@ -56,4 +52,4 @@ const CodePassword: FC<CodePasswordProps> = ({ handleCheckCodeToken }) => {
   );
 };
 
-export default CodePassword;
+export default React.memo(CodePassword);

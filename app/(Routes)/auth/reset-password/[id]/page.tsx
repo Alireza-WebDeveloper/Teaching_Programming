@@ -12,13 +12,14 @@ import CodePassword from '@/app/Components/Form/CodePassword';
 import ResetPassword from '@/app/Components/Form/ResetPassword';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { error } from 'console';
+import Countdown from 'react-countdown';
 const Page = () => {
   const { data: user, isLoading } = useGetUser();
   const router = useRouter();
   const { id } = useParams();
   // Of Request 1
   const [checkTokenResetPassword, setCheckTokenResetPassword] = useState(false);
+  const [timeOut, setTimeOut] = useState<any>(null);
   // Of Request 2
   const [checkCodeResetPassword, setCheckCodeResetPassword] = useState(false);
   const [code, SetCode] = useState<any>(null);
@@ -28,8 +29,9 @@ const Page = () => {
   useEffect(() => {
     if (!isLoading && !user) {
       asyncCheckTokenResetPassword(id)
-        .then((res) => {
+        .then((res: any) => {
           setCheckTokenResetPassword(true);
+          setTimeOut(res.data.timeOut);
         })
         .catch((err: any) => {
           toast.error(`${err.message}`);
@@ -37,6 +39,23 @@ const Page = () => {
         });
     }
   }, [user, isLoading]);
+
+  useEffect(() => {
+    if (timeOut) {
+      const timer = setInterval(() => {
+        if (timeOut > 0) {
+          setTimeOut(timeOut - 1);
+        }
+      }, 1000);
+
+      return () => {
+        clearInterval(timer);
+      };
+    }
+  }, [timeOut, router]);
+  if (timeOut === 0) {
+    return router.push('/auth/signin');
+  }
 
   // 2 ) Request Send Check Code Of Email
   const handleCheckCodeToken = async (values: { code: string }) => {
@@ -79,6 +98,13 @@ const Page = () => {
               <p className="text-center text-lg">
                 please confirm code of email
               </p>
+              <p className="text-sm">
+                Time remaining:{' '}
+                <span className="font-bold text-blue-600 dark:text-blue-400">
+                  {timeOut}
+                </span>{' '}
+                seconds
+              </p>
               <CodePassword handleCheckCodeToken={handleCheckCodeToken} />
             </>
           ) : checkCodeResetPassword && checkTokenResetPassword ? (
@@ -88,6 +114,13 @@ const Page = () => {
                 <span className="absolute -bottom-2.5 w-[50%] h-1 bg-purple-800 dark:bg-purple-300 rounded"></span>
               </section>
               <p className="text-center text-lg">please confirm new Password</p>
+              <p className="text-sm">
+                Time remaining:{' '}
+                <span className="font-bold text-blue-600 dark:text-blue-400">
+                  {timeOut}
+                </span>{' '}
+                seconds
+              </p>
               <ResetPassword handleResetPassword={handleResetPassword} />
             </>
           ) : (
