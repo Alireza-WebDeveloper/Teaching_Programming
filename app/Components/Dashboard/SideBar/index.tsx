@@ -9,7 +9,7 @@ const Sidebar = () => {
     <section
       className={`col-span-2 bg-white dark:bg-black flex flex-col space-y-3 p-3`}
     >
-      <Link href={'/auth/dashboard/home'}>
+      {/* <Link href={'/auth/dashboard/home'}>
         <div
           className={`flex items-center ${
             pathname === '/auth/dashboard/home'
@@ -20,7 +20,7 @@ const Sidebar = () => {
           <Icons.MdHome size="1.5rem" />
           <p className="text-sm">home</p>
         </div>
-      </Link>
+      </Link> */}
       <Link href={'/auth/dashboard/profile'}>
         <div
           className={`flex items-center ${

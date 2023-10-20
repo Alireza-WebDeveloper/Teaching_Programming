@@ -93,6 +93,15 @@ const asyncResetPassword = async (data: any) => {
   }
 };
 
+const asyncUpdatePassword = async (data: any) => {
+  try {
+    const response = await BaseApi.post(`auth/updatepassword`, data);
+    return response;
+  } catch (err: any) {
+    throw new Error(err.response.data.message);
+  }
+};
+
 export {
   asyncSignIn,
   asyncSignUp,
@@ -103,4 +112,5 @@ export {
   asyncCheckTokenResetPassword,
   asyncCheckCodeResetPassword,
   asyncResetPassword,
+  asyncUpdatePassword,
 };

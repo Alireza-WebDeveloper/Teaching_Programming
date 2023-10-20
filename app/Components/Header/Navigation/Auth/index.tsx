@@ -32,7 +32,7 @@ export default function Auth() {
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="px-1 py-1 ">
-              <Menu.Item>
+              {/* <Menu.Item>
                 {({ active }) => (
                   <Link href={'/auth/dashboard/home'}>
                     <button
@@ -44,11 +44,11 @@ export default function Auth() {
                         className="mr-2 h-5 w-5"
                         aria-hidden="true"
                       />
-                      home
+                      dashboard
                     </button>
                   </Link>
                 )}
-              </Menu.Item>
+              </Menu.Item> */}
               <Menu.Item>
                 {({ active }) => (
                   <Link href={'/auth/dashboard/profile'}>

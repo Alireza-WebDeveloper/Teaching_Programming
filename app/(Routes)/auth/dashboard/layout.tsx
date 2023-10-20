@@ -12,7 +12,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       ) : user ? (
         <div className="grid grid-cols-12 h-screen">
           <Sidebar />
-          <section className="col-span-10">{children}</section>
+          <section className="col-span-10 p-4">{children}</section>
         </div>
       ) : (
         router.push('/')
