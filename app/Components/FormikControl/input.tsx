@@ -18,6 +18,7 @@ const Input: FC<InputProps> = ({ otherProps }) => {
             <input
               {...field}
               id={name}
+              autoComplete="off"
               type={type}
               className="bg-gray-50 placeholder:capitalize border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-3 text-lg dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-96"
               placeholder={label}
