@@ -12,7 +12,8 @@ import CodePassword from '@/app/Components/Form/CodePassword';
 import ResetPassword from '@/app/Components/Form/ResetPassword';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import Countdown from 'react-countdown';
+import { CodeResetPasswordState, ResetPasswordState } from '@/app/Models/Auth';
+
 const Page = () => {
   const { data: user, isLoading } = useGetUser();
   const router = useRouter();
@@ -58,7 +59,7 @@ const Page = () => {
   }
 
   // 2 ) Request Send Check Code Of Email
-  const handleCheckCodeToken = async (values: { code: string }) => {
+  const handleCheckCodeToken = async (values: CodeResetPasswordState) => {
     const newData = { id, code: values.code };
     asyncCheckCodeResetPassword(newData)
       .then((res: any) => {
@@ -73,7 +74,7 @@ const Page = () => {
   };
 
   // 3 ) Send Request Reset Password
-  const handleResetPassword = async (values: any) => {
+  const handleResetPassword = async (values: ResetPasswordState) => {
     const newData: any = {
       password: values.password,
       passwordConfirm: values.passwordConfirm,

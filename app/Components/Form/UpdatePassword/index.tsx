@@ -3,14 +3,14 @@ import { FC } from 'react';
 import { Formik, Form as Formik_Form } from 'formik';
 import FormikControl from '../../FormikControl';
 import * as Yup from 'yup';
-import { asyncUpdatePassword } from '@/app/StateManagement/Service/Auth';
 import useUpdatePassword from '@/app/Hooks/Auth/useUpdatePassword';
+import { UpdatePasswordState } from '@/app/Models/Auth';
 
 // Types
 
 type UpdatePassword = {};
 // InitialValues
-const initialValues: any = {
+const initialValues: UpdatePasswordState = {
   currentPassword: '',
   newPassword: '',
   confirmNewPassword: '',

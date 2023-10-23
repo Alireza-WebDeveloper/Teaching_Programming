@@ -1,4 +1,16 @@
-import { SignResponse, SignInState, SignUpState } from '@/app/Models/Auth';
+import {
+  SignResponse,
+  SignInState,
+  SignUpState,
+  ForgotPasswordState,
+  ForgotPasswordProps,
+  ResetPasswordState,
+  ResetPasswordResponse,
+  TokenResetPasswordResponse,
+  CodeResetPasswordResponse,
+  UpdatePasswordState,
+  UpdatePasswordResponse,
+} from '@/app/Models/Auth';
 import BaseApi from '../Base';
 
 const asyncSignUp = async (data: SignUpState) => {
@@ -49,9 +61,12 @@ const asyncRefreshToken = async () => {
   }
 };
 
-const asyncForgotPasword = async (data: { email: string }) => {
+const asyncForgotPasword = async (data: ForgotPasswordState) => {
   try {
-    const response = await BaseApi.post('/auth/forgotPassword', data);
+    const response = await BaseApi.post<ForgotPasswordProps>(
+      '/auth/forgotPassword',
+      data
+    );
     return response;
   } catch (err: any) {
     throw new Error(err.response.data.message);
@@ -60,7 +75,9 @@ const asyncForgotPasword = async (data: { email: string }) => {
 
 const asyncCheckTokenResetPassword = async (id: any) => {
   try {
-    const response = await BaseApi.get(`/auth/checkTokenResetPassword/${id}`);
+    const response = await BaseApi.get<TokenResetPasswordResponse>(
+      `/auth/checkTokenResetPassword/${id}`
+    );
     return response;
   } catch (err: any) {
     throw new Error(err.response.data.message);
@@ -70,32 +87,41 @@ const asyncCheckTokenResetPassword = async (id: any) => {
 const asyncCheckCodeResetPassword = async (data: any) => {
   try {
     const { id, code } = data;
-    const response = await BaseApi.post(`/auth/checkCodeResetPassword/${id}`, {
-      code,
-    });
+    const response = await BaseApi.post<CodeResetPasswordResponse>(
+      `/auth/checkCodeResetPassword/${id}`,
+      {
+        code,
+      }
+    );
     return response;
   } catch (err: any) {
     throw new Error(err.response.data.message);
   }
 };
 
-const asyncResetPassword = async (data: any) => {
+const asyncResetPassword = async (data: ResetPasswordState) => {
   try {
     const { id, code, password, passwordConfirm } = data;
-    const response = await BaseApi.post(`auth/resetpassword/${id}`, {
-      code,
-      password,
-      passwordConfirm,
-    });
+    const response = await BaseApi.post<ResetPasswordResponse>(
+      `auth/resetpassword/${id}`,
+      {
+        code,
+        password,
+        passwordConfirm,
+      }
+    );
     return response;
   } catch (err: any) {
     throw new Error(err.response.data.message);
   }
 };
 
-const asyncUpdatePassword = async (data: any) => {
+const asyncUpdatePassword = async (data: UpdatePasswordState) => {
   try {
-    const response = await BaseApi.post(`auth/updatepassword`, data);
+    const response = await BaseApi.post<UpdatePasswordResponse>(
+      `auth/updatepassword`,
+      data
+    );
     return response;
   } catch (err: any) {
     throw new Error(err.response.data.message);

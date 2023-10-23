@@ -4,11 +4,12 @@ import { Formik, Form as Formik_Form } from 'formik';
 import FormikControl from '../../FormikControl';
 import * as Yup from 'yup';
 import useForgotPassword from '@/app/Hooks/Auth/useForgotPassword';
+import { ForgotPasswordState } from '@/app/Models/Auth';
 // Types
 
 type ForgotPasswordProps = {};
 // InitialValues
-const initialValues: { email: string } = {
+const initialValues: ForgotPasswordState = {
   email: '',
 };
 
@@ -24,7 +25,7 @@ const ForgotPassword: FC<ForgotPasswordProps> = () => {
   const { mutate, isSuccess, isLoading } = useForgotPassword();
 
   // Submit Form
-  const handleFilterProucts = async (values: { email: string }) => {
+  const handleFilterProucts = async (values: ForgotPasswordState) => {
     mutate(values);
   };
   // Return JSX

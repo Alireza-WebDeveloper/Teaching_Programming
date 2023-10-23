@@ -1,3 +1,4 @@
+import { ResetPasswordState } from '@/app/Models/Auth';
 import { asyncResetPassword } from '@/app/StateManagement/Service/Auth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
@@ -8,7 +9,7 @@ const useResetPassword = () => {
   const queryClient = useQueryClient();
   const { isError, isLoading, mutate } = useMutation({
     mutationKey: querykey,
-    mutationFn: (data: any) => asyncResetPassword(data),
+    mutationFn: (data: ResetPasswordState) => asyncResetPassword(data),
     onSuccess: (values: any) => {
       queryClient.setQueryData(querykey, null);
       const { message } = values.data;

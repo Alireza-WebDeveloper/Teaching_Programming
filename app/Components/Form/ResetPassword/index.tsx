@@ -3,13 +3,11 @@ import { FC } from 'react';
 import { Formik, Form as Formik_Form } from 'formik';
 import FormikControl from '../../FormikControl';
 import * as Yup from 'yup';
+import { ResetPasswordState } from '@/app/Models/Auth';
 // Types
 
 type ResetPasswordProps = {
-  handleResetPassword(values: {
-    password: string;
-    passwordConfirm: string;
-  }): void;
+  handleResetPassword(values: ResetPasswordState): void;
 };
 // InitialValues
 const initialValues: any = {

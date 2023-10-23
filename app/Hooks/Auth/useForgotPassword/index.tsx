@@ -1,10 +1,11 @@
-import { SignInState } from '@/app/Models/Auth';
+import { ForgotPasswordState, SignInState } from '@/app/Models/Auth';
 import { asyncForgotPasword } from '@/app/StateManagement/Service/Auth';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 const useForgotPassword = () => {
   const { isError, isLoading, mutate, isSuccess } = useMutation({
-    mutationFn: ({ email }: { email: string }) => asyncForgotPasword({ email }),
+    mutationFn: ({ email }: ForgotPasswordState) =>
+      asyncForgotPasword({ email }),
     onSuccess: (values: any) => {
       const { message } = values.data;
       toast.success(`${message}`);
