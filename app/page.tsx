@@ -1,13 +1,22 @@
+import Course from './Components/Course';
+import { asyncGetCourseByLimit } from './StateManagement/Service/Course';
+
 export const revalidate = false;
 export const dynamic = 'force-dynamic';
-const HomePage = () => {
-  return (
-    <div className="grid place-items-center min-h-[100vh]">
-      <h1 className="font-bold lg:text-xl md:text-lg text-sm text-center animate-bounce">
-        The desired courses have not been published yet.
-      </h1>
-    </div>
-  );
+const HomePage = async () => {
+  try {
+    const {
+      data: { course: courses },
+    } = await asyncGetCourseByLimit();
+
+    return (
+      <div className="grid grid-cols-1 p-2  container mx-auto">
+        <Course courses={courses} />
+      </div>
+    );
+  } catch (err: any) {
+    throw new Error(err);
+  }
 };
 
 export default HomePage;
