@@ -11,7 +11,11 @@ const CourseList: React.FC<CourseListProps> = ({ courses }) => {
       return <CourseItem key={course._id} course={course} />;
     });
   };
-  return <div className="grid grid-cols-4 gap-3">{courseItems()}</div>;
+  return (
+    <div className="grid  lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3">
+      {courseItems()}
+    </div>
+  );
 };
 
 export default CourseList;
