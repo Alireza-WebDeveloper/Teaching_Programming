@@ -1,4 +1,8 @@
-import { CourseResponse, CourseState } from '@/app/Models/Course';
+import {
+  CourseDetailResponse,
+  CourseResponse,
+  CourseState,
+} from '@/app/Models/Course';
 import BaseApi from '../Base';
 
 const asyncGetCourseByLimit = async (limit = 5) => {
@@ -20,10 +24,12 @@ const asyncGetAllCourse = async () => {
     throw new Error(err.response.data.message);
   }
 };
-const asyncGetCourseById = async (data: any) => {
+const asyncGetCourseById = async (data: { id: any }) => {
   try {
-    const response = await BaseApi.get(`/api/course/${data}`);
-    return response;
+    const response = await BaseApi.get<CourseDetailResponse>(
+      `/course/${data.id}`
+    );
+    return response.data;
   } catch (err: any) {
     throw new Error(err.response.data.message);
   }

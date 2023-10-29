@@ -1,12 +1,12 @@
 import React from 'react';
-import { CourseState } from '../../Models/Course';
+import { CourseState } from '@/app/Models/Course';
 import CourseTitle from './CourseTitle';
 import CourseList from './CourseList';
-interface CourseProps {
+interface CourseGroupProps {
   courses: CourseState[];
 }
 
-const Course: React.FC<CourseProps> = ({ courses }) => {
+const CourseGroup: React.FC<CourseGroupProps> = ({ courses }) => {
   return (
     <div className="flex flex-col space-y-5">
       <CourseTitle title={'Discover Our New Courses'} />
@@ -15,4 +15,4 @@ const Course: React.FC<CourseProps> = ({ courses }) => {
   );
 };
 
-export default Course;
+export default CourseGroup;

@@ -1,4 +1,4 @@
-import Course from './Components/Course';
+import CourseGroup from './Components/Course/CourseGroup';
 import { asyncGetCourseByLimit } from './StateManagement/Service/Course';
 
 export const revalidate = false;
@@ -11,7 +11,7 @@ const HomePage = async () => {
 
     return (
       <div className="grid grid-cols-1 p-2  container mx-auto">
-        <Course courses={courses} />
+        <CourseGroup courses={courses} />
       </div>
     );
   } catch (err: any) {
