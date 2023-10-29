@@ -7,7 +7,7 @@ const HomePage = async () => {
   try {
     const {
       data: { course: courses },
-    } = await asyncGetCourseByLimit();
+    } = await asyncGetCourseByLimit(6);
 
     return (
       <div className="grid grid-cols-1 p-2  container mx-auto">

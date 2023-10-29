@@ -9,7 +9,7 @@ interface CourseProps {
 const Course: React.FC<CourseProps> = ({ courses }) => {
   return (
     <div className="flex flex-col space-y-5">
-      <CourseTitle title={'The latest courses'} />
+      <CourseTitle title={'Discover Our New Courses'} />
       <CourseList courses={courses} />
     </div>
   );
