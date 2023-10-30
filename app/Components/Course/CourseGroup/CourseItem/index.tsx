@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { LoadPartialImageType } from '@/app/Models/Imag';
 import Link from 'next/link';
 import { useState } from 'react';
+import useSavedCourse from '@/app/Hooks/Auth/useSavedCourse';
 interface CourseItemProps {
   course: CourseState;
 }
@@ -23,7 +24,12 @@ const CourseItem: React.FC<CourseItemProps> = ({ course }) => {
     month: 'short',
     day: '2-digit',
   }).format(new Date(createAt));
-
+  // Handle Saved Course
+  const { mutate } = useSavedCourse();
+  const handleSavedCourse = () => {
+    const data = { courseId: course._id };
+    mutate(data);
+  };
   return (
     <section
       className="relative"
@@ -53,7 +59,7 @@ const CourseItem: React.FC<CourseItemProps> = ({ course }) => {
         }  z-10`}
       ></div>
       {/* Content */}
-      <div className="absolute flex flex-col  justify-between p-2 top-0 w-full h-full z-50 opacity-100">
+      <div className="absolute flex flex-col  justify-between p-2 top-0 w-full h-full z-40 opacity-100">
         <div className="flex items-center justify-between p-1">
           {/* Categories */}
           <section className="space-x-1 flex">
@@ -69,7 +75,7 @@ const CourseItem: React.FC<CourseItemProps> = ({ course }) => {
             })}
           </section>
           {/* ShoppingCart */}
-          <span className="cursor-pointer">
+          <span className="cursor-pointer" onClick={handleSavedCourse}>
             <Icons.MdAddShoppingCart className="text-gray-100" />
           </span>
         </div>

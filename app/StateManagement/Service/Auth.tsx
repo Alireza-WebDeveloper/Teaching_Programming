@@ -128,6 +128,16 @@ const asyncUpdatePassword = async (data: UpdatePasswordState) => {
   }
 };
 
+const asyncSavedCourse = async (data: any) => {
+  try {
+    const response = await BaseApi.post<any>(`auth/savedCourse`, data);
+
+    return response.data;
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
 export {
   asyncSignIn,
   asyncSignUp,
@@ -139,4 +149,5 @@ export {
   asyncCheckCodeResetPassword,
   asyncResetPassword,
   asyncUpdatePassword,
+  asyncSavedCourse,
 };

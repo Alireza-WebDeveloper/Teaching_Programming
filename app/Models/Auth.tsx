@@ -1,3 +1,5 @@
+import { CourseState } from './Course';
+
 export interface SignInState {
   email: string;
   password: string;
@@ -9,6 +11,7 @@ export interface SignResponse {
     user: {
       name: string;
       email: string;
+      savedCourse: CourseState[];
     };
   };
 }
