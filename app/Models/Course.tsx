@@ -14,7 +14,12 @@ export interface CourseState {
 export interface CourseChapter {
   _id: string;
   name: string;
-  sections: { _id: string; name: string }[];
+  totalVideoDuration: number;
+  sections: {
+    _id: string;
+    name: string;
+    video: { url: string; duration: number; title: string };
+  }[];
 }
 
 export interface CourseDetailState extends CourseState {

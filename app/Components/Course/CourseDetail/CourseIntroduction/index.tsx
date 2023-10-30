@@ -2,18 +2,26 @@
 import { CourseDetailState } from '@/app/Models/Course';
 import React from 'react';
 import { LoadPartialImageType } from '@/app/Models/Imag';
-import Link from 'next/link';
+import * as Icons from 'react-icons/md';
+import CourseManager from '@/app/Helpers/CourseManager';
 import Image from 'next/image';
+
+// Manager Function About Course , Chapter
+const newCourseManager = new CourseManager();
+
+// Type Of Props
 interface CourseIntroductionProps {
   course: CourseDetailState;
 }
 
+// Load Image
 const loadImage = ({ src, width, quality }: LoadPartialImageType) => {
   return `${src}?w=${width}&q=${quality || 75}`;
 };
 
 const CourseIntroduction: React.FC<CourseIntroductionProps> = ({ course }) => {
-  const { categories, name, title, image, description, _id } = course;
+  const { categories, name, title, image, description, _id, chapters } = course;
+
   return (
     <section className="grid grid-cols-12 gap-2 bg-white dark:bg-gray-800 p-2 rounded">
       <article className="lg:col-span-4 col-span-12">
@@ -47,9 +55,17 @@ const CourseIntroduction: React.FC<CourseIntroductionProps> = ({ course }) => {
           {name} . {title}
         </p>
         <p className="text-sm">{description}</p>
-        <button className="bg-blue-700 px-4 py-2 rounded-full">
-          Join Course
-        </button>
+        <div className="flex justify-between items-center m-2">
+          <button className="bg-blue-700 px-4 py-2 rounded-full">
+            Join Course
+          </button>
+          <section className="flex gap-1">
+            <Icons.MdTimer size="1.7rem" />
+            <span className="text-lg">
+              {newCourseManager.calculatorTotalDurationVideos(chapters)}
+            </span>
+          </section>
+        </div>
       </article>
     </section>
   );

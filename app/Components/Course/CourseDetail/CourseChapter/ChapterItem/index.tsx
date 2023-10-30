@@ -1,10 +1,15 @@
 import { CourseChapter } from '@/app/Models/Course';
+import CourseManager from '@/app/Helpers/CourseManager';
 import { Disclosure } from '@headlessui/react';
 import * as Icons from 'react-icons/md';
 interface ChapterItemProps {
   chapter: CourseChapter;
   index: any;
 }
+
+// Manager Function About Course , Chapter
+const newCourseManager = new CourseManager();
+
 const ChapterItem: React.FC<ChapterItemProps> = ({ chapter, index }) => {
   return (
     <Disclosure>
@@ -32,7 +37,11 @@ const ChapterItem: React.FC<ChapterItemProps> = ({ chapter, index }) => {
                       {index + 1}. {section.name}
                     </span>
                     <section className="flex items-center gap-4">
-                      <span>10 min</span>
+                      <span>
+                        {newCourseManager.convertMillisecondsToTime(
+                          section.video.duration
+                        )}
+                      </span>
                       <span>
                         <Icons.MdLock />
                       </span>
