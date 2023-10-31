@@ -128,10 +128,19 @@ const asyncUpdatePassword = async (data: UpdatePasswordState) => {
   }
 };
 
-const asyncSavedCourse = async (data: any) => {
+const asyncSavedCourse = async (id: any) => {
   try {
-    const response = await BaseApi.post<any>(`auth/savedCourse`, data);
+    const response = await BaseApi.patch<any>(`auth/course/${id}`);
 
+    return response.data;
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
+const asyncDeleteCourse = async (id: any) => {
+  try {
+    const response = await BaseApi.delete<any>(`auth/course/${id}`);
     return response.data;
   } catch (err: any) {
     throw new Error(err);
@@ -150,4 +159,5 @@ export {
   asyncResetPassword,
   asyncUpdatePassword,
   asyncSavedCourse,
+  asyncDeleteCourse,
 };

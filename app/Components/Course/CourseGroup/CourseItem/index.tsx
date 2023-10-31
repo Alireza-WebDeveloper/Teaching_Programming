@@ -6,6 +6,8 @@ import { LoadPartialImageType } from '@/app/Models/Imag';
 import Link from 'next/link';
 import { useState } from 'react';
 import useSavedCourse from '@/app/Hooks/Auth/useSavedCourse';
+import CourseManager from '@/app/Helpers/CourseManager';
+const newCourseManager = new CourseManager();
 interface CourseItemProps {
   course: CourseState;
 }
@@ -27,8 +29,7 @@ const CourseItem: React.FC<CourseItemProps> = ({ course }) => {
   // Handle Saved Course
   const { mutate } = useSavedCourse();
   const handleSavedCourse = () => {
-    const data = { courseId: course._id };
-    mutate(data);
+    mutate(course._id);
   };
   return (
     <section
@@ -100,12 +101,7 @@ const CourseItem: React.FC<CourseItemProps> = ({ course }) => {
             </section>
             <section>
               <span className="font-semibold"> cost : ‌</span>
-              <span>
-                {new Intl.NumberFormat('en-US', {
-                  style: 'currency',
-                  currency: 'USD',
-                }).format(Number(price))}
-              </span>
+              <span>{newCourseManager.formatPrice(course.price)}</span>
             </section>
             <button className="bg-blue-700 px-2 py-1 rounded-full">
               Join Course

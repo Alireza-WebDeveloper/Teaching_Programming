@@ -20,6 +20,12 @@ class CourseManager {
     );
     return this.convertMillisecondsToTime(totalDurationVidoes);
   };
+  formatPrice(price: any) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(Number(price));
+  }
 }
 
 export default CourseManager;

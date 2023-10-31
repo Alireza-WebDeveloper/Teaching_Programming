@@ -23,3 +23,24 @@
     -webkit-filter: blur(0);
   }
 }
+
+.emoji {
+  padding: 2rem;
+  font-size: 3rem;
+  transform: scale(0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: text-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.emoji:hover {
+  transform: scale(1) translateY(-10px);
+  text-shadow: 0 20px 20px rgba(0, 0, 0, 0.3);
+}
+
+.emoji--sad::before {
+  content: '😕';
+}
+
+.emoji--sad:hover::before {
+  content: '☹️';
+}

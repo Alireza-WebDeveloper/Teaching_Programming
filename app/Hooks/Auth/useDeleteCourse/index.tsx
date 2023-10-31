@@ -1,12 +1,12 @@
-import { asyncSavedCourse } from '@/app/StateManagement/Service/Auth';
+import { asyncDeleteCourse } from '@/app/StateManagement/Service/Auth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-const useSavedCourse = () => {
+const useDeleteCourse = () => {
   const querykey = ['user'];
   const queryClient = useQueryClient();
   const { isError, isLoading, mutate } = useMutation({
     mutationKey: querykey,
-    mutationFn: (id: any) => asyncSavedCourse(id),
+    mutationFn: (id: any) => asyncDeleteCourse(id),
     onSuccess: (values: any) => {
       const userUpdate = values.data.user;
       queryClient.setQueryData(querykey, userUpdate);
@@ -22,4 +22,4 @@ const useSavedCourse = () => {
   return { isError, isLoading, mutate };
 };
 
-export default useSavedCourse;
+export default useDeleteCourse;

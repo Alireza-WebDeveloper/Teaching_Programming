@@ -5,14 +5,16 @@ export interface SignInState {
   password: string;
 }
 
+export interface userState {
+  name: string;
+  email: string;
+  savedCourse: CourseState[];
+}
+
 export interface SignResponse {
   statu: string;
   data: {
-    user: {
-      name: string;
-      email: string;
-      savedCourse: CourseState[];
-    };
+    user: userState;
   };
 }
 
