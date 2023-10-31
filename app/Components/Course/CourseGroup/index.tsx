@@ -4,12 +4,13 @@ import CourseTitle from './CourseTitle';
 import CourseList from './CourseList';
 interface CourseGroupProps {
   courses: CourseState[];
+  title: string;
 }
 
-const CourseGroup: React.FC<CourseGroupProps> = ({ courses }) => {
+const CourseGroup: React.FC<CourseGroupProps> = ({ courses, title }) => {
   return (
     <div className="flex flex-col space-y-5">
-      <CourseTitle title={'Discover Our New Courses'} />
+      <CourseTitle title={title} />
       <CourseList courses={courses} />
     </div>
   );

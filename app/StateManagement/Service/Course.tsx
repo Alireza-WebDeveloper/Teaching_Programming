@@ -18,8 +18,8 @@ const asyncGetCourseByLimit = async (limit = 5) => {
 
 const asyncGetAllCourse = async () => {
   try {
-    const response = await BaseApi.get<CourseState[]>('/api/course');
-    return response;
+    const response = await BaseApi.get<CourseResponse>('/course');
+    return response.data;
   } catch (err: any) {
     throw new Error(err.response.data.message);
   }

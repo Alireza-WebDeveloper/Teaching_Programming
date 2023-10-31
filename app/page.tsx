@@ -11,7 +11,7 @@ const HomePage = async () => {
 
     return (
       <div className="grid grid-cols-1 p-2  container mx-auto">
-        <CourseGroup courses={courses} />
+        <CourseGroup courses={courses} title={'Discover Our New Courses'} />
       </div>
     );
   } catch (err: any) {
