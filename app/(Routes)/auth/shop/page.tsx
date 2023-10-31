@@ -1,8 +1,9 @@
 'use client';
+
 import Shop from '@/app/Components/Shop';
 import useGetUser from '@/app/Hooks/Auth/useGetUser';
 import { useRouter } from 'next/navigation';
-const Page = ({ children }: { children: React.ReactNode }) => {
+const Page = () => {
   const { data: user, isLoading } = useGetUser();
   const router = useRouter();
   return (
