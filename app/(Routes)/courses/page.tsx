@@ -11,7 +11,11 @@ const Page = async () => {
 
     return (
       <div className="grid grid-cols-1 p-2  container mx-auto">
-        <CourseGroup courses={courses} title="Access All Courses Here" />
+        <CourseGroup
+          moreLink={false}
+          courses={courses}
+          title="Access All Courses Here"
+        />
       </div>
     );
   } catch (err: any) {
