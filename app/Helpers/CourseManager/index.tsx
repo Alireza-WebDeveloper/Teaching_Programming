@@ -26,6 +26,13 @@ class CourseManager {
       currency: 'USD',
     }).format(Number(price));
   }
+  convertDate = (date: any) => {
+    return new Intl.DateTimeFormat('en-Us', {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+    }).format(new Date(date));
+  };
 }
 
 export default CourseManager;
