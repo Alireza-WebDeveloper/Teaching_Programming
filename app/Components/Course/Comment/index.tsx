@@ -11,7 +11,13 @@ const Comment: React.FC<CommentProps> = ({ comments }) => {
     <div className="flex flex-col space-y-4  rounded">
       <h1 className="text-xl font-bold">Course comments</h1>
       <CreateComment />
-      <CommentList comments={comments} />
+      {comments.length === 0 ? (
+        <h1 className="capitalize p-2 bg-white rounded dark:bg-gray-800">
+          There are currently no comments
+        </h1>
+      ) : (
+        <CommentList comments={comments} />
+      )}
     </div>
   );
 };

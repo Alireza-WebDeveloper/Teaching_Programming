@@ -13,7 +13,13 @@ const CourseChapter: React.FC<CourseChapterProps> = ({ course }) => {
         Exploring the Comprehensive Modules of the React Mastery Course:
         Unveiling the Core Topics!
       </h1>
-      <ChapterList chapters={course.chapters} />
+      {course.chapters.length === 0 ? (
+        <h1 className="capitalize p-2 bg-white rounded dark:bg-gray-800">
+          Course topics will be added soon...
+        </h1>
+      ) : (
+        <ChapterList chapters={course.chapters} />
+      )}
     </section>
   );
 };
