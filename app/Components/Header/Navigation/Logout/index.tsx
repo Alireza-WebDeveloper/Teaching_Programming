@@ -15,7 +15,7 @@ const Index = () => {
         onClick={handlerLogOut}
         className="px-5 py-2.5 text-lg  bg-gray-50 rounded-lg relative flex gap-2 dark:bg-gray-950 items-center capitalize hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
       >
-        <span>log out</span>
+        <span>sign out</span>
         <span>
           <Icons.MdLogout />
         </span>

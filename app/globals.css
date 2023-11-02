@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 .fadeComponent {
-  animation: fade 1.5s linear alternate forwards;
-  -webkit-animation: fade 1.5s linear alternate forwards;
+  animation: fade 2s linear alternate forwards;
+  -webkit-animation: fade 2s linear alternate forwards;
 }
 
 @keyframes fade {
