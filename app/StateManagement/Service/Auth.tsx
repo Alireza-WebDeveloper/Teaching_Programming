@@ -134,7 +134,7 @@ const asyncSavedCourse = async (id: any) => {
 
     return response.data;
   } catch (err: any) {
-    throw new Error(err);
+    throw new Error(err.response.data.message);
   }
 };
 
@@ -143,7 +143,7 @@ const asyncDeleteCourse = async (id: any) => {
     const response = await BaseApi.delete<any>(`auth/course/${id}`);
     return response.data;
   } catch (err: any) {
-    throw new Error(err);
+    throw new Error(err.response.data.message);
   }
 };
 

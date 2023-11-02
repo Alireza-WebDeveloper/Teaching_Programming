@@ -4,12 +4,14 @@ import * as Icons from 'react-icons/md';
 import CommentReply from './CommentReply';
 import CreateCommentReply from '@/app/Components/Form/CreateCommentReply';
 import CourseManager from '@/app/Helpers/CourseManager';
+import useGetUser from '@/app/Hooks/Auth/useGetUser';
 const newCourseManager = new CourseManager();
 interface CommentItemProps {
   comment: CommentState;
 }
 const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
   // State Props
+  const { data: userAuth, isLoading } = useGetUser();
   const { user, createAt, text } = comment;
   // Reply Comments
   const CommentReplies = () => {
@@ -24,7 +26,19 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
         <span>
           <Icons.MdOutlinePerson size="2rem" />
         </span>
-        <span className="text-lg font-semibold">{user.name}</span>
+        <span
+          className={`text-lg font-semibold ${
+            userAuth?.name === user.name
+              ? 'text-purple-800 dark:text-purple-500'
+              : ''
+          }`}
+        >
+          {isLoading
+            ? ''
+            : userAuth && userAuth.name === user.name
+            ? 'your comment'
+            : user.name}
+        </span>
         <span className="text-sm text-gray-400">
           {newCourseManager.convertDate(createAt)}
         </span>
@@ -34,7 +48,13 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
       </article>
       <article className="md:w-[90%] w-[98%] ml-[1%] md:ml-[5%] m-auto space-y-7  p-3 rounded">
         {/* Form New Comment */}
-        <CreateCommentReply commentId={comment._id} />
+        {isLoading ? (
+          ''
+        ) : userAuth?.name === user.name ? (
+          ''
+        ) : (
+          <CreateCommentReply commentId={comment._id} />
+        )}
         {/* Render Comments Reply */}
         {CommentReplies()}
       </article>
