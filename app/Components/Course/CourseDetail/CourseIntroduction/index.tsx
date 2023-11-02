@@ -56,9 +56,9 @@ const CourseIntroduction: React.FC<CourseIntroductionProps> = ({ course }) => {
         </p>
         <p className="text-sm">{description}</p>
         <div className="flex justify-between items-center m-2">
-          <button className="bg-blue-700 px-4 py-2 rounded-full">
+          {/* <button className="bg-blue-700 px-4 py-2 rounded-full">
             Join Course
-          </button>
+          </button> */}
           <section className="flex gap-1">
             <Icons.MdTimer size="1.7rem" />
             <span className="text-lg">

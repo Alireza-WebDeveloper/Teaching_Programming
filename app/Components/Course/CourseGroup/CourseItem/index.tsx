@@ -103,9 +103,9 @@ const CourseItem: React.FC<CourseItemProps> = ({ course }) => {
               <span className="font-semibold"> cost : ‌</span>
               <span>{newCourseManager.formatPrice(course.price)}</span>
             </section>
-            <button className="bg-blue-700 px-2 py-1 rounded-full">
+            {/* <button className="bg-blue-700 px-2 py-1 rounded-full">
               Join Course
-            </button>
+            </button> */}
           </section>
         </div>
       </div>

@@ -22,7 +22,7 @@ const validationSchema = Yup.object().shape({
     .required('Email is required.'),
   password: Yup.string()
     .min(8, 'Password must be at least 8 characters.')
-    .max(15, 'Password cannot be more than 15 characters.')
+    .max(30, 'Password cannot be more than 15 characters.')
     .matches(
       /^(?=(.*[A-Za-z]){3,})(?=(.*\d){3,})[A-Za-z\d]+$/,
       'Password must have at least 3 English letters and 3 digits.'

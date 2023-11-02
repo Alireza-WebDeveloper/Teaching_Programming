@@ -29,14 +29,14 @@ const initialValues: initialValuesType = {
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .min(4, 'Name must be at least 4 characters.')
-    .max(15, 'Name must be at least 15 characters.')
+    .max(30, 'Name must be at least 30 characters.')
     .required('Name is Required.'),
   email: Yup.string()
     .email('Email must be a valid email address.')
     .required('Email is required.'),
   password: Yup.string()
     .min(8, 'Password must be at least 8 characters.')
-    .max(15, 'Password cannot be more than 15 characters.')
+    .max(30, 'Password cannot be more than 15 characters.')
     .matches(
       /^(?=(.*[A-Za-z]){3,})(?=(.*\d){3,})[A-Za-z\d]+$/,
       'Password must have at least 3 English letters and 3 digits.'
