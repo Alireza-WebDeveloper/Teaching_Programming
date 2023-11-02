@@ -5,7 +5,7 @@ import GlobalLinks from './Global';
 import SignLinks from './Sign';
 import Logout from './Logout';
 import Auth from './Auth';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 const Navigation = () => {
   // States Check Auth
   const { data: user, isLoading, isError, refetch } = useGetUser();

@@ -28,10 +28,17 @@ const CreateComment: FC<CreateCommentProps> = () => {
   const [activeComment, setActiveComment] = useState(false);
   const { data: user, isLoading } = useGetUser();
   // Submit Form
-  const handleCreateComment = async (values: any) => {
+  const handleCreateComment = async (values: any, options: any) => {
     try {
-      await asyncCreateCommentByCourse(id, { text: values.text });
-    } catch (err) {}
+      const response = await asyncCreateCommentByCourse(id, {
+        text: values.text,
+      });
+      toast.success(response.data.message);
+      options.resetForm();
+      setActiveComment(false);
+    } catch (err: any) {
+      toast.success(err.message);
+    }
   };
   // Actions
   const handleActiveComment = () => {

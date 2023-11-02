@@ -29,12 +29,21 @@ const CreateCommentReply: FC<CreateCommentReplyProps> = ({ commentId }) => {
   const [activeComment, setActiveComment] = useState(false);
   const { data: user, isLoading } = useGetUser();
   // Submit Form
-  const handleCreateCommentReply = async (values: any) => {
+  const handleCreateCommentReply = async (values: any, options: any) => {
     try {
-      await asyncCreateReplyByCourseAndComment(courseId, commentId, {
-        text: values.text,
-      });
-    } catch (err) {}
+      const response = await asyncCreateReplyByCourseAndComment(
+        courseId,
+        commentId,
+        {
+          text: values.text,
+        }
+      );
+      toast.success(response.data.message);
+      options.resetForm();
+      setActiveComment(false);
+    } catch (err: any) {
+      toast.success(err.message);
+    }
   };
   // Actions
   const handleActiveCommentReply = () => {

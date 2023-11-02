@@ -17,7 +17,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           <section className="col-span-10 p-4">{children}</section>
         </div>
       ) : (
-        router.push('/')
+        router.push('/auth/signin')
       )}
     </>
   );
