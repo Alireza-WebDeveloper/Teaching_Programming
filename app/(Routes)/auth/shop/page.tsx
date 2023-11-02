@@ -4,8 +4,10 @@ import Shop from '@/app/Components/Shop';
 import useGetUser from '@/app/Hooks/Auth/useGetUser';
 import { useRouter } from 'next/navigation';
 const Page = () => {
+  // State
   const { data: user, isLoading } = useGetUser();
   const router = useRouter();
+  // Return JSX
   return (
     <>
       {isLoading ? (

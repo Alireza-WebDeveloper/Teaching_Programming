@@ -3,15 +3,21 @@ import { LoadPartialImageType } from '@/app/Models/Imag';
 import Image from 'next/image';
 import CourseManager from '@/app/Helpers/CourseManager';
 import useDeleteCourse from '@/app/Hooks/Auth/useDeleteCourse';
+const loadImage = ({ src, width, quality }: LoadPartialImageType) => {
+  return `${src}?w=${width}&q=${quality || 75}`;
+};
+
+// Type Props
 interface ShopItemProps {
   course: CourseState;
 }
 const newCourseManager = new CourseManager();
-const loadImage = ({ src, width, quality }: LoadPartialImageType) => {
-  return `${src}?w=${width}&q=${quality || 75}`;
-};
+// State
+
 const ShopItem: React.FC<ShopItemProps> = ({ course }) => {
+  // State
   const { mutate } = useDeleteCourse();
+  // Action Delete Course
   const handleDeleteCourse = () => {
     mutate(course._id);
   };

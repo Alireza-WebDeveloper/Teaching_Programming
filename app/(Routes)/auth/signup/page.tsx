@@ -3,7 +3,9 @@ import SignUp from '@/app/Components/Form/SignUp';
 import useGetUser from '@/app/Hooks/Auth/useGetUser';
 import { redirect } from 'next/navigation';
 const Page = () => {
+  // State
   const { data: user, isLoading } = useGetUser();
+  // Return JSX
   return (
     <div className="grid place-items-center grid-cols-1 gap-10">
       {isLoading ? (

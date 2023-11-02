@@ -15,16 +15,17 @@ import { toast } from 'react-toastify';
 import { CodeResetPasswordState, ResetPasswordState } from '@/app/Models/Auth';
 
 const Page = () => {
+  // State
   const { data: user, isLoading } = useGetUser();
   const router = useRouter();
   const { id } = useParams();
-  // Of Request 1
+  // Of Request 1 -> Validation Token Url
   const [checkTokenResetPassword, setCheckTokenResetPassword] = useState(false);
   const [timeOut, setTimeOut] = useState<any>(null);
-  // Of Request 2
+  // Of Request 2 -> Validation Code , Token
   const [checkCodeResetPassword, setCheckCodeResetPassword] = useState(false);
   const [code, SetCode] = useState<any>(null);
-  // Of Request 3
+  // Of Request 3 -> Reset New Password
   const { mutate } = useResetPassword();
   // 1 ) Check Token On URl(Id)
   useEffect(() => {

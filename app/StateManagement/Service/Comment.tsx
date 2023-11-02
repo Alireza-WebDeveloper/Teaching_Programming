@@ -1,6 +1,12 @@
 import { CommentResponse } from '@/app/Models/Comment';
 import BaseApi from '../Base';
-const asyncGetCommentByCourseId = async (courseId: any) => {
+
+/**
+ *
+ * @param courseId = 526358896963
+ * @returns
+ */
+const asyncGetCommentByCourseId = async (courseId: string) => {
   try {
     const response = await BaseApi.get<CommentResponse>(
       `course/${courseId}/comment`
@@ -11,7 +17,16 @@ const asyncGetCommentByCourseId = async (courseId: any) => {
   }
 };
 
-const asyncCreateCommentByCourse = async (courseId: any, data: any) => {
+/**
+ *
+ * @param courseId = 59695252
+ * @param data = {text:'good'}
+ * @returns
+ */
+const asyncCreateCommentByCourse = async (
+  courseId: string,
+  data: { text: string }
+) => {
   try {
     const response = await BaseApi.post<any>(
       `course/${courseId}/comment`,
@@ -23,10 +38,17 @@ const asyncCreateCommentByCourse = async (courseId: any, data: any) => {
   }
 };
 
+/**
+ *
+ * @param courseId = 6863625
+ * @param commentId = 695223
+ * @param data = {text:'good'}
+ * @returns
+ */
 const asyncCreateReplyByCourseAndComment = async (
-  courseId: any,
-  commentId: any,
-  data: any
+  courseId: string,
+  commentId: string,
+  data: { text: string }
 ) => {
   try {
     const response = await BaseApi.post<any>(

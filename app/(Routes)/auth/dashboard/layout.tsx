@@ -3,8 +3,10 @@ import Sidebar from '@/app/Components/Dashboard/SideBar';
 import useGetUser from '@/app/Hooks/Auth/useGetUser';
 import { useRouter } from 'next/navigation';
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  // State
   const { data: user, isLoading } = useGetUser();
   const router = useRouter();
+  // Return JSX
   return (
     <>
       {isLoading ? (

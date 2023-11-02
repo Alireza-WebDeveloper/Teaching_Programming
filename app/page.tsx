@@ -1,8 +1,11 @@
 import CourseGroup from './Components/Course/CourseGroup';
 import { asyncGetCourseByLimit } from './StateManagement/Service/Course';
 
+// Site settings in terms of server
 export const revalidate = false;
 export const dynamic = 'force-dynamic';
+
+// Page
 const HomePage = async () => {
   try {
     const {

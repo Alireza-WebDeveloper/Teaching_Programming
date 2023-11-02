@@ -1,8 +1,10 @@
 import CourseGroup from '@/app/Components/Course/CourseGroup';
 import { asyncGetAllCourse } from '@/app/StateManagement/Service/Course';
 
+// Site settings in terms of server
 export const revalidate = false;
 export const dynamic = 'force-dynamic';
+
 const Page = async () => {
   try {
     const {

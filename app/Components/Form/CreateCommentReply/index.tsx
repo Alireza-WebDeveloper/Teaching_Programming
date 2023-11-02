@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
 
 const CreateCommentReply: FC<CreateCommentReplyProps> = ({ commentId }) => {
   // States
-  const { id: courseId } = useParams();
+  const { id: courseId }: { id: string } = useParams();
   const [activeComment, setActiveComment] = useState(false);
   const { data: user, isLoading } = useGetUser();
   // Submit Form
