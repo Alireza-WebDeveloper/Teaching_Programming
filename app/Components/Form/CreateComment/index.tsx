@@ -64,17 +64,21 @@ const CreateComment: FC<CreateCommentProps> = () => {
         return (
           <Formik_Form>
             <>
-              {!activeComment && !isLoading ? (
-                <button
-                  onClick={handleActiveComment}
-                  className="flex w-fit items-center font-semibold text-white gap-2 py-2 px-4 mt-2 mb-2 rounded  bg-blue-700 hover:bg-blue-700 dark:hover:bg-blue-500 capitalize"
-                >
-                  <span> Send a new comment</span>
-                  <Icons.MdOutlineAddComment />
-                </button>
-              ) : (
-                ''
-              )}
+              <div className="flex items-center justify-between mb-5">
+                <h1 className="text-xl font-bold">Course comments</h1>
+                {!activeComment && !isLoading ? (
+                  <button
+                    onClick={handleActiveComment}
+                    className="flex w-fit items-center font-semibold text-white gap-2 py-2 px-4 mt-2 mb-2 rounded  bg-blue-700 hover:bg-blue-700 dark:hover:bg-blue-500 capitalize"
+                  >
+                    <span> Send a new comment</span>
+                    <Icons.MdOutlineAddComment />
+                  </button>
+                ) : (
+                  ''
+                )}
+              </div>
+
               {activeComment && (
                 <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
                   <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
