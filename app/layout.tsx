@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import { Zoom } from 'react-toastify';
 const robotoSlab = Roboto_Slab({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400'],
 });
 
 export const metadata: Metadata = {
