@@ -8,7 +8,7 @@ interface CommentListProps {
 const CommentList: React.FC<CommentListProps> = ({ comments }) => {
   // Comment Items
   const commentItems = () => {
-    return comments.map((comment) => {
+    return comments.reverse().map((comment) => {
       return <CommentItem key={comment._id} comment={comment} />;
     });
   };

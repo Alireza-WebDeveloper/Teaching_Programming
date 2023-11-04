@@ -19,7 +19,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
   const { mutate: mutateDeleteLike } = useDeleteLikeComment();
   // Reply Comments
   const CommentReplies = () => {
-    return comment.replies.map((reply) => {
+    return comment.replies.reverse().map((reply) => {
       return <CommentReply key={reply._id} reply={reply} />;
     });
   };
