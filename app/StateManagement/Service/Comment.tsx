@@ -11,7 +11,7 @@ const asyncGetCommentByCourseId = async (courseId: string) => {
     const response = await BaseApi.get<CommentResponse>(
       `course/${courseId}/comment`
     );
-    return response.data;
+    return response.data.data;
   } catch (err: any) {
     throw new Error(err.response.data.message);
   }

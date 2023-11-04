@@ -1,5 +1,6 @@
 interface User {
   name: string;
+  id: string;
 }
 
 interface Comment {
@@ -10,6 +11,12 @@ interface Comment {
   user: User;
   course: string;
   replies: ReplyComment[];
+  likes: LikeComment[];
+}
+
+export interface LikeComment {
+  user: string;
+  _id: string;
 }
 
 export interface ReplyComment {

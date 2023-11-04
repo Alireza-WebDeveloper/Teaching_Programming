@@ -1,8 +1,4 @@
-import {
-  CourseDetailResponse,
-  CourseResponse,
-  CourseState,
-} from '@/app/Models/Course';
+import { CourseDetailResponse, CourseResponse } from '@/app/Models/Course';
 import BaseApi from '../Base';
 
 const asyncGetCourseByLimit = async (limit = 5) => {

@@ -3,11 +3,12 @@ import { FC, useState } from 'react';
 import { Formik, Form as Formik_Form } from 'formik';
 import FormikControl from '../../FormikControl';
 import * as Yup from 'yup';
-import { useParams } from 'next/navigation';
-import { asyncCreateReplyByCourseAndComment } from '@/app/StateManagement/Service/Comment';
+import { useEffect } from 'react';
 import * as Icons from 'react-icons/md';
 import useGetUser from '@/app/Hooks/Auth/useGetUser';
 import { toast } from 'react-toastify';
+import useCreateReplyComment from '@/app/Hooks/Comment/useReplyCreate';
+import useGetComment from '@/app/Hooks/Comment/useGetComment';
 // Types
 
 type CreateCommentReplyProps = {
@@ -25,32 +26,30 @@ const validationSchema = Yup.object().shape({
 
 const CreateCommentReply: FC<CreateCommentReplyProps> = ({ commentId }) => {
   // States
-  const { id: courseId }: { id: string } = useParams();
+  const { mutate, isSuccess: isSuccessCreateComment } = useCreateReplyComment();
   const [activeComment, setActiveComment] = useState(false);
   const { data: user, isLoading } = useGetUser();
+  const { refetch: refetchGetComment } = useGetComment();
   // Submit Form
   const handleCreateCommentReply = async (values: any, options: any) => {
-    try {
-      const response = await asyncCreateReplyByCourseAndComment(
-        courseId,
-        commentId,
-        {
-          text: values.text,
-        }
-      );
-      toast.success(response.data.message);
-      options.resetForm();
-      setActiveComment(false);
-    } catch (err: any) {
-      toast.success(err.message);
-    }
+    mutate({ text: values.text, commentId });
+    options.resetForm();
+    setActiveComment(false);
   };
+  // Refetch Get Comments  When Success Create Reply Comment
+  useEffect(() => {
+    if (isSuccessCreateComment) {
+      refetchGetComment();
+    }
+  }, [isSuccessCreateComment]);
   // Actions
   const handleActiveCommentReply = () => {
     if (user) {
       setActiveComment(true);
     } else {
-      toast.error('Please log in to your account');
+      toast.error(
+        'Unauthorized access. You need to authenticate to access this resource.'
+      );
     }
   };
   const handleCloseComment = () => {

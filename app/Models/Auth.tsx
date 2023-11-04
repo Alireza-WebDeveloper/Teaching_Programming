@@ -9,6 +9,7 @@ export interface userState {
   name: string;
   email: string;
   savedCourse: CourseState[];
+  id: string;
 }
 
 export interface SignResponse {
