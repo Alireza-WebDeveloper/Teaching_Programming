@@ -10,6 +10,7 @@ export interface userState {
   email: string;
   savedCourse: CourseState[];
   id: string;
+  avatar: string;
 }
 
 export interface SignResponse {

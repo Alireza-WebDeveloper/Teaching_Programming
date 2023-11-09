@@ -4,7 +4,11 @@ import { Menu, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import * as Icons from 'react-icons/md';
-
+import Image from 'next/image';
+import { LoadPartialImageType } from '@/app/Models/Imag';
+const loadImage = ({ src, width, quality }: LoadPartialImageType) => {
+  return `${src}?w=${width}&q=${quality || 75}`;
+};
 export default function Auth() {
   const { data: user, isError, isLoading } = useGetUser();
   if (isLoading || isError) return <></>;
@@ -12,13 +16,20 @@ export default function Auth() {
     <div>
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex w-full items-center justify-center rounded-md bg-black text-white dark:text-black dark:bg-gray-200  px-4 py-2 text-sm font-medium   hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          <Menu.Button className="inline-flex w-full gap-2 items-center justify-center rounded-md bg-black text-white dark:text-black dark:bg-gray-200  px-4 py-2 text-sm font-medium   hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <Icons.MdArrowDropDown className="mr-1" />
             <span className="text-sm capitalize">{user?.name}</span>
-            <Icons.MdPerson
-              className="ml-2 -mr-1 h-7 w-5 text-white dark:text-black hover:text-violet-100 "
-              aria-hidden="true"
-            />
+            <div className="relative w-6 h-6">
+              <Image
+                loader={loadImage}
+                src={`http://localhost:8000/img/user/${user?.avatar}`}
+                alt={'image'}
+                fill
+                className="object-fill rounded-xl"
+                priority
+                sizes="(max-width: 1200px) 100vw"
+              />
+            </div>
           </Menu.Button>
         </div>
         <Transition
