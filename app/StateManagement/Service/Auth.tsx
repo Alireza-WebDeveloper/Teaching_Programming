@@ -147,6 +147,15 @@ const asyncDeleteCourse = async (id: any) => {
   }
 };
 
+const asyncUpdateAvatar = async (data: { avatar: string }) => {
+  try {
+    const response = await BaseApi.patch<any>(`auth/updateAvatar`, data);
+    return response.data;
+  } catch (err: any) {
+    throw new Error(err.response.data.message);
+  }
+};
+
 export {
   asyncSignIn,
   asyncSignUp,
@@ -160,4 +169,5 @@ export {
   asyncUpdatePassword,
   asyncSavedCourse,
   asyncDeleteCourse,
+  asyncUpdateAvatar,
 };

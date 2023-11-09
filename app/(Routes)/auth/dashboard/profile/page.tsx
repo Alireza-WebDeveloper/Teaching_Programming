@@ -1,4 +1,5 @@
 'use client';
+import UpdateAvatar from '@/app/Components/Form/UpdateAvatar';
 import useGetUser from '@/app/Hooks/Auth/useGetUser';
 const Page = () => {
   const { data } = useGetUser();
