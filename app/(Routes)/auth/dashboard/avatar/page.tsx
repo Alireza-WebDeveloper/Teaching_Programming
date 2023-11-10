@@ -1,4 +1,3 @@
-import Avatar from '@/app/Components/Dashboard/Avatar';
 import UpdateAvatar from '@/app/Components/Form/UpdateAvatar';
 
 const Page = () => {
