@@ -147,8 +147,9 @@ const asyncDeleteCourse = async (id: any) => {
   }
 };
 
-const asyncUpdateAvatar = async (data: { avatar: string }) => {
+const asyncUpdateAvatar = async (data: any) => {
   try {
+    console.log(data);
     const response = await BaseApi.patch<any>(`auth/updateAvatar`, data);
     return response.data;
   } catch (err: any) {

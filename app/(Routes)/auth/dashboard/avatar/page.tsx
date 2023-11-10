@@ -4,12 +4,7 @@ import UpdateAvatar from '@/app/Components/Form/UpdateAvatar';
 const Page = () => {
   return (
     <div className="flex flex-row gap-3 space-y-2 items-center">
-      <section className="w-1/5 justify-center flex">
-        <Avatar />
-      </section>
-      <section className=" w-4/5">
-        <UpdateAvatar />
-      </section>
+      <UpdateAvatar />
     </div>
   );
 };

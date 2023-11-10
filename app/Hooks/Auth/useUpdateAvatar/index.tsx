@@ -6,12 +6,14 @@ const useUpdateAvatar = () => {
   const queryClient = useQueryClient();
   const { isError, isLoading, mutate } = useMutation({
     mutationKey: querykey,
-    mutationFn: (data: { avatar: string }) => asyncUpdateAvatar(data),
+    mutationFn: (data: any) => asyncUpdateAvatar(data),
     onSuccess: (values: any) => {
-      console.log(values);
-      //   queryClient.setQueryData(querykey, null);
-      //   const { message } = values.data;
-      //   toast.success(`${message}`);
+      const {
+        data: { user },
+      } = values;
+      queryClient.setQueryData(querykey, user);
+      const { message } = values;
+      toast.success(`${message}`);
     },
     onError: (error: Error) => {
       toast.error(`${error.message}`);
