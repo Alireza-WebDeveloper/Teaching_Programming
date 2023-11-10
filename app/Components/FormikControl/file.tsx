@@ -23,6 +23,7 @@ const File: FC<FileProps> = ({ otherProps }) => {
                 aria-describedby="file_input_help"
                 id="file_input"
                 type="file"
+                accept="img/*"
               />
               <p
                 className="mt-1 text-sm text-gray-500 dark:text-gray-300"

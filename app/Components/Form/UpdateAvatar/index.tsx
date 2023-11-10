@@ -1,54 +1,50 @@
 'use client';
-import { FC } from 'react';
-import { Formik, Form as Formik_Form } from 'formik';
-import FormikControl from '../../FormikControl';
-import * as Yup from 'yup';
 import useUpdateAvatar from '@/app/Hooks/Auth/useUpdateAvatar';
-// Types
+import { useState, ChangeEvent, FormEvent } from 'react';
 
-type UpdateAvatarProps = {};
-// InitialValues
-const initialValues: any = {
-  avatar: '',
-};
-
-// Validation
-const validationSchema = Yup.object().shape({
-  avatar: Yup.mixed(),
-});
-
-const UpdateAvatar: FC<UpdateAvatarProps> = () => {
-  // States
+const UpdateAvatar = () => {
   const { mutate } = useUpdateAvatar();
-  // Submit Form
-  const handleFilterProucts = async (values: { avatar: string }) => {
-    mutate(values);
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleUpdateAvatar = (e: FormEvent) => {
+    e.preventDefault();
+    if (file) {
+      const formData: any = new FormData();
+      formData.append('avatar', file);
+      mutate(formData);
+    }
   };
-  // Return JSX
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFile(e.target.files[0]);
+    }
+  };
+
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleFilterProucts}
-      validationSchema={validationSchema}
+    <form
+      onSubmit={handleUpdateAvatar}
+      className="w-full p-8 bg-white dark:bg-gray-900 shadow-md rounded-lg"
     >
-      {(FormikProps) => {
-        return (
-          <Formik_Form>
-            <div className="flex flex-col space-y-5">
-              <FormikControl control="file" name="avatar" type="file" />
-              <section className="flex flex-col space-y-2">
-                <button
-                  type="submit"
-                  className="bg-green-600 w-full py-2 rounded-lg capitalize px-4 text-2xl text-white"
-                >
-                  update
-                </button>
-              </section>
-            </div>
-          </Formik_Form>
-        );
-      }}
-    </Formik>
+      <label
+        className="block text-gray-700 dark:text-white text-sm font-bold mb-2"
+        htmlFor="file"
+      >
+        Choose your avatar:
+      </label>
+      <input
+        id="file"
+        type="file"
+        onChange={handleFileChange}
+        className="border rounded p-2 w-full"
+      />
+      <button
+        type="submit"
+        className="mt-4 bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 hover:bg-green-600   text-white font-bold py-2 px-4 rounded"
+      >
+        Update
+      </button>
+    </form>
   );
 };
 
