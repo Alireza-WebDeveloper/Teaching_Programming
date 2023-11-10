@@ -4,14 +4,14 @@ import { toast } from 'react-toastify';
 const useUpdateAvatar = () => {
   const querykey = ['user'];
   const queryClient = useQueryClient();
-  const { isError, isLoading, mutate } = useMutation({
+  const { isError, isLoading, mutate, isSuccess } = useMutation({
     mutationKey: querykey,
     mutationFn: (data: any) => asyncUpdateAvatar(data),
     onSuccess: (values: any) => {
       const {
         data: { user },
       } = values;
-      queryClient.setQueryData(querykey, user);
+      // queryClient.setQueryData(querykey, user);
       const { message } = values;
       toast.success(`${message}`);
     },
@@ -20,7 +20,7 @@ const useUpdateAvatar = () => {
     },
   });
 
-  return { isError, isLoading, mutate };
+  return { isError, isLoading, mutate, isSuccess };
 };
 
 export default useUpdateAvatar;

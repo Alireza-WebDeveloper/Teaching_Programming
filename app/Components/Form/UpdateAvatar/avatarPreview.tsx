@@ -23,7 +23,7 @@ const AvatarPreview: React.FC<AvatarPreviewProps> = ({ file }) => {
   }, [file]);
 
   return (
-    <div className="relative w-full  h-80 rounded-full">
+    <div className="relative w-80  h-80 rounded-full">
       {preview ? (
         <Image
           loader={loadImage}

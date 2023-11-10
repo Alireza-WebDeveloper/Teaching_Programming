@@ -3,6 +3,9 @@ import { Formik, Form as Formik_Form } from 'formik';
 import * as Yup from 'yup';
 import AvatarPreview from './avatarPreview';
 import useUpdateAvatar from '@/app/Hooks/Auth/useUpdateAvatar';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import useGetUser from '@/app/Hooks/Auth/useGetUser';
 const initialValues: { avatar: File | null } = {
   avatar: null,
 };
@@ -13,8 +16,8 @@ const validationSchema = Yup.object().shape({
     .required('Please select an image.')
     .test(
       'FILE_SIZE',
-      'The selected file is too large. Please choose a file under 1MB.',
-      (value: any) => value && value.size < 1024 * 1024
+      'The selected file is too large. Please choose a file under 2MB.',
+      (value: any) => value && value.size < 2048 * 2048
     )
     .test(
       'FILE_TYPE',
@@ -24,10 +27,23 @@ const validationSchema = Yup.object().shape({
 });
 
 const UpdateAvatar = () => {
-  const { mutate } = useUpdateAvatar();
-  const handleSubmit = (values: any) => {
-    mutate(values);
+  // States
+  const { mutate, isSuccess } = useUpdateAvatar();
+  const { refetch } = useGetUser();
+  const router = useRouter();
+  // Update Avatar Action
+  const handleSubmit = (values: any, options: any) => {
+    const formData: any = new FormData();
+    formData.append('avatar', values.avatar);
+    mutate(formData);
   };
+  // Refetch User , Router Back To Home
+  useEffect(() => {
+    if (isSuccess) {
+      router.push('/auth/dashboard/profile');
+      refetch();
+    }
+  }, [isSuccess]);
   return (
     <Formik
       initialValues={initialValues}
@@ -53,9 +69,11 @@ const UpdateAvatar = () => {
                 Update
               </button>
             </div>
+            {/* Error Message */}
             {FormikProps.errors.avatar && (
               <p className="text-red-600">{FormikProps.errors.avatar}</p>
             )}
+            {/* Avatar Preview */}
             {FormikProps.values.avatar && !FormikProps.errors.avatar ? (
               <AvatarPreview file={FormikProps.values.avatar} />
             ) : (
