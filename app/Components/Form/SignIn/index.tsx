@@ -70,7 +70,7 @@ const SignIn: FC<SignInProps> = () => {
                 <section className="flex justify-between">
                   <Link
                     className="text-center text-sm text-blue-700 dark:text-blue-500 font-bold"
-                    href={'/signup'}
+                    href={'/auth/signup'}
                   >
                     {`don't have an account?`}
                   </Link>
