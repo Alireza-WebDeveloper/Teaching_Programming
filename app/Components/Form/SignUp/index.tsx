@@ -98,7 +98,7 @@ const SignUp: FC<SignUpProps> = () => {
                 </button>
                 <Link
                   className="text-center text-sm text-blue-700 dark:text-blue-500 font-bold"
-                  href={'/signin'}
+                  href={'/auth/signin'}
                 >
                   have you already registered?
                 </Link>

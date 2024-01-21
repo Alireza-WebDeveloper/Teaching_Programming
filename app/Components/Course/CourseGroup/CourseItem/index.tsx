@@ -45,7 +45,7 @@ const CourseItem: React.FC<CourseItemProps> = ({ course }) => {
         {/* Cover Image */}
         <Image
           loader={loadImage}
-          src={`http://localhost:8000${image}`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/Course/${image}`}
           alt={'image'}
           fill
           className="object-cover rounded-xl"
