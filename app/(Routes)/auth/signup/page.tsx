@@ -1,6 +1,7 @@
 'use client';
 import SignUp from '@/app/Components/Form/SignUp';
 import useGetUser from '@/app/Hooks/Auth/useGetUser';
+import Loading from '@/app/loading';
 import { redirect } from 'next/navigation';
 const Page = () => {
   // State
@@ -9,7 +10,7 @@ const Page = () => {
   return (
     <div className="grid place-items-center grid-cols-1 gap-10">
       {isLoading ? (
-        ''
+        <Loading />
       ) : !user ? (
         <>
           <section className="relative">

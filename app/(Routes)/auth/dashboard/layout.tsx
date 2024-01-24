@@ -1,6 +1,7 @@
 'use client';
 import Sidebar from '@/app/Components/Dashboard/SideBar';
 import useGetUser from '@/app/Hooks/Auth/useGetUser';
+import Loading from '@/app/loading';
 import { useRouter } from 'next/navigation';
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   // State
@@ -10,7 +11,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {isLoading ? (
-        ''
+        <Loading />
       ) : user ? (
         <div className="grid grid-cols-12 h-screen">
           <Sidebar />

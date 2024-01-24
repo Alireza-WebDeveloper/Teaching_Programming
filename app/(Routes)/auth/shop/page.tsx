@@ -2,6 +2,7 @@
 
 import Shop from '@/app/Components/Shop';
 import useGetUser from '@/app/Hooks/Auth/useGetUser';
+import Loading from '@/app/loading';
 import { useRouter } from 'next/navigation';
 const Page = () => {
   // State
@@ -11,7 +12,7 @@ const Page = () => {
   return (
     <>
       {isLoading ? (
-        ''
+        <Loading />
       ) : user ? (
         <div className="grid grid-cols-1 p-4 container mx-auto">
           <Shop user={user} />

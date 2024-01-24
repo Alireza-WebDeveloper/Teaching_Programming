@@ -13,6 +13,7 @@ import ResetPassword from '@/app/Components/Form/ResetPassword';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { CodeResetPasswordState, ResetPasswordState } from '@/app/Models/Auth';
+import Loading from '@/app/loading';
 
 const Page = () => {
   // State
@@ -88,7 +89,7 @@ const Page = () => {
   return (
     <div className="grid place-items-center grid-cols-1 gap-10">
       {isLoading ? (
-        ''
+        <Loading />
       ) : !user ? (
         <>
           {checkTokenResetPassword && !checkCodeResetPassword ? (
