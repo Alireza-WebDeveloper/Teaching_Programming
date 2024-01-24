@@ -22,7 +22,7 @@ export default function Auth() {
             <div className="relative w-6 h-6">
               <Image
                 loader={loadImage}
-                src={`http://localhost:8000/img/user/${user?.avatar}`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/user/${user?.avatar}`}
                 alt={'image'}
                 fill
                 className="object-fill rounded-xl"
