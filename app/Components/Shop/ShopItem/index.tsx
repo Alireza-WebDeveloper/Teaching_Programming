@@ -30,7 +30,7 @@ const ShopItem: React.FC<ShopItemProps> = ({ course }) => {
           {/* Cover Image */}
           <Image
             loader={loadImage}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/Course/${image}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/course/${image}`}
             alt={'image'}
             fill
             className="object-cover rounded-xl"
