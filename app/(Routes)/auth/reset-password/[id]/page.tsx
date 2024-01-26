@@ -15,6 +15,16 @@ import { toast } from 'react-toastify';
 import { CodeResetPasswordState, ResetPasswordState } from '@/app/Models/Auth';
 import Loading from '@/app/loading';
 
+const formatTime = (seconds: any) => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  const formattedMinutes = String(minutes).padStart(2, '0');
+  const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+  return `${formattedMinutes} : ${formattedSeconds}`;
+};
+
 const Page = () => {
   // State
   const { data: user, isLoading } = useGetUser();
@@ -102,11 +112,10 @@ const Page = () => {
                 please confirm code of email
               </p>
               <p className="text-sm">
-                Time remaining:{' '}
+                Time remaining{' '}
                 <span className="font-bold text-blue-600 dark:text-blue-400">
-                  {timeOut}
+                  {formatTime(timeOut)}
                 </span>{' '}
-                seconds
               </p>
               <CodePassword handleCheckCodeToken={handleCheckCodeToken} />
             </>
