@@ -127,11 +127,10 @@ const Page = () => {
               </section>
               <p className="text-center text-lg">please confirm new Password</p>
               <p className="text-sm">
-                Time remaining:{' '}
+                Time remaining{' '}
                 <span className="font-bold text-blue-600 dark:text-blue-400">
-                  {timeOut}
+                  {formatTime(timeOut)}
                 </span>{' '}
-                seconds
               </p>
               <ResetPassword handleResetPassword={handleResetPassword} />
             </>
